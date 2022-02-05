@@ -1,10 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from . models import Worker
 from .forms import WorkerForm
+from . import utilities 
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, DeleteView
+from django.views import View
+import importlib
 
 # import generic UpdateView
 from django.views.generic.edit import UpdateView
@@ -37,3 +40,12 @@ class WorkerDelete(SuccessMessageMixin, DeleteView):
     template_name = 'worker_delete.html'
     success_url ="/"
     success_message = "Worker was deleted successfully"
+
+class ProfsView(View):
+    
+    def get(self, request):
+        context = {}
+        importlib.reload(utilities)
+        context['profs'] = utilities.score
+        return render(request, 'profs.html', context)
+

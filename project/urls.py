@@ -6,11 +6,11 @@ urlpatterns = [
  
 
     path('', views.WorkersList.as_view(), name='worker-list'),
+    path('profs/', views.ProfsView.as_view(), name='profs-list'),
     path('create/', views.WorkerCreateView.as_view(), name='worker-create'),
     path('<pk>/', views.WorkerDetail.as_view(), name='worker-detail'),
     path('<pk>/update/', views.WorkerUpdate.as_view(), name='worker-update'),
     path('<pk>/delete/', views.WorkerDelete.as_view(), name='worker-delete'),
+    path('profs/', views.ProfsView.as_view(), name='profs-list'),
 
-
- 
 ]
