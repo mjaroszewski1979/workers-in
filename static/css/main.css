@@ -1,0 +1,13 @@
+a {
+    text-decoration: None;
+    color: white;
+}
+#worker-detail {
+    color: black;
+}
+#worker-update:hover {
+    color: white;
+}
+a.navbar-item:hover {
+    color: black;
+}

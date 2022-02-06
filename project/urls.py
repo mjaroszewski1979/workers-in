@@ -1,7 +1,6 @@
 from django.urls import path
 from django.views.generic.base import TemplateView
 from . import views
-
 urlpatterns = [
  
 
@@ -10,7 +9,7 @@ urlpatterns = [
     path('create/', views.WorkerCreateView.as_view(), name='worker-create'),
     path('<pk>/', views.WorkerDetail.as_view(), name='worker-detail'),
     path('<pk>/update/', views.WorkerUpdate.as_view(), name='worker-update'),
-    path('<pk>/delete/', views.WorkerDelete.as_view(), name='worker-delete'),
-    path('profs/', views.ProfsView.as_view(), name='profs-list'),
+    path('ajax/delete/',  views.DeleteWorker.as_view(), name='worker_delete'),
+
 
 ]

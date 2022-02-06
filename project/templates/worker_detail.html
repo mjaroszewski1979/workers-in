@@ -1,34 +1,43 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
+{% block title %} Home | {% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-content">
             {% if object.image %}
-            <img src="{{ object.image.url }}" alt="" width="80%"/>
-            {% else %}
-            <img src="{% static 'images/default.jpg' %}" alt=""/>
-            {% endif %}
-            <ul>
-                <li>{{ object.name }}</li></a>
-                <li>{{ object.surname }}</li>
-                <li>{{ object.profession }}</li>
-                <li>{{ object.age }}</li>
-            </ul>
-            <a href="{% url 'worker-update' object.id %}">update</a>
-            <a href="{% url 'worker-delete' object.id %}">delete</a>
-            {% if messages %}
-            {% for message in messages %}
-                <div class="row">
-                    <div class="col-4 col-12-medium-{{ message.tags }}">
-                        <h2>{{ message|safe }}</h2>
-                    </div>
+        <figure class="image is-32x32 mb-4">
+            <img src="{{ object.image.url }}" alt=""/>
+        </figure>
+        {% else %}
+        <div class="card-image">
+            <figure class="image is-32x32 mb-4">
+                <img src="{% static 'images/default.jpg' %}" alt=""/>
+            </figure>
+        </div>
+        {% endif %}
+        <div class="content">
+            <h3 class="is-size-6 mt-2">{{ object.name|title }}</h3>
+        </div>
+        <div class="content">
+            <h3 class="is-size-6 mt-2">{{ object.surname|title }}</h3>
+        </div>
+        <div class="content">
+            <h3 class="is-size-6 mt-2">{{ object.profession|title }}</h3>
+        </div>
+        <div class="content">
+            <h3 class="is-size-6 mt-2">{{ object.age }}</h3>
+        </div>
+        {% if messages %}
+        {% for message in messages %}
+            <div class="row">
+                <div class="col-4 col-12-medium-{{ message.tags }}">
+                    <h2>{{ message|safe }}</h2>
                 </div>
-            {% endfor %}
-            {% endif %}
-</body>
-</html>
+            </div>
+        {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

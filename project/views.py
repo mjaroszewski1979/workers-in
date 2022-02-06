@@ -8,6 +8,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views import View
 import importlib
+from django.views.generic import View
+from django.http import JsonResponse
 
 # import generic UpdateView
 from django.views.generic.edit import UpdateView
@@ -28,18 +30,13 @@ class WorkerUpdate(SuccessMessageMixin, UpdateView):
     model = Worker
     template_name = 'worker_update.html'
     fields = '__all__'
-    success_url = '.'
+    success_url = '/'
     success_message = "Worker was updated successfully"
 
 class WorkerDetail(DetailView):
     model = Worker
     template_name = 'worker_detail.html'
 
-class WorkerDelete(SuccessMessageMixin, DeleteView):
-    model = Worker
-    template_name = 'worker_delete.html'
-    success_url ="/"
-    success_message = "Worker was deleted successfully"
 
 class ProfsView(View):
     
@@ -48,4 +45,13 @@ class ProfsView(View):
         importlib.reload(utilities)
         context['profs'] = utilities.score
         return render(request, 'profs.html', context)
+
+class DeleteWorker(View):
+    def  get(self, request):
+        id1 = request.GET.get('id', None)
+        Worker.objects.get(id=id1).delete()
+        data = {
+            'deleted': True
+        }
+        return JsonResponse(data)
 
