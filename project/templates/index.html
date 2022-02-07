@@ -8,18 +8,35 @@
         <div class="column is-12 has-text-centered mt-6 mb-6">
             <h2 class="is-size-3">List of Workers</h2>
         </div>
-        {% for worker in object_list %}
+        {% for worker in page_obj %}
         <div class="card mb-4" id="workerTable">
             <div class="card-content" id="worker-{{worker.id}}">
             <div class="content">
                 <h3 class="is-size-6 mt-2"><a href="{% url 'worker-detail' worker.id %}" id="worker-detail">{{ worker.name|title }} {{ worker.surname|title }}</a></h3>
             </div>
             <div class="content">
-                <h3 class="is-size-6 mt-2"><button class="button is-dark is-uupercase mr-4"><a href="{% url 'worker-update' worker.id %}" id="worker-update">Edit</a></button><button onClick="deleteUser({{worker.id}})" class="button is-dark is-uupercase">Delete</button></h3>
+                <h3 class="is-size-6 mt-2"><button class="button is-dark is-uupercase mr-4"><a href="{% url 'worker-update' worker.id %}" id="worker-update">Update</a></button><button onClick="deleteUser({{worker.id}})" class="button is-dark is-uupercase">Delete</button></h3>
             </div>
             </div>
         </div>
         {% endfor %}
+        <div class="column is-12 has-text-centered mt-6 mb-6">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
         {% if messages %}
         {% for message in messages %}
             <div class="row">
@@ -31,6 +48,7 @@
         {% endif %}
     </div>
 {% endblock %}
+
 {% block scripts %}
 <script>
     function deleteUser(id) {

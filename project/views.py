@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404
 from . models import Worker
-from .forms import WorkerForm
 from . import utilities 
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
@@ -11,11 +10,17 @@ import importlib
 from django.views.generic import View
 from django.http import JsonResponse
 
+import csv
+
+from django.http import HttpResponse
+
+
 # import generic UpdateView
 from django.views.generic.edit import UpdateView
 from django.contrib.messages.views import SuccessMessageMixin
 
 class WorkersList(ListView):
+    paginate_by = 5
     model = Worker
     template_name = 'index.html'
 
@@ -38,13 +43,13 @@ class WorkerDetail(DetailView):
     template_name = 'worker_detail.html'
 
 
-class ProfsView(View):
+class AverageView(View):
     
     def get(self, request):
         context = {}
         importlib.reload(utilities)
-        context['profs'] = utilities.score
-        return render(request, 'profs.html', context)
+        context['average'] = utilities.score
+        return render(request, 'average.html', context)
 
 class DeleteWorker(View):
     def  get(self, request):
@@ -54,4 +59,19 @@ class DeleteWorker(View):
             'deleted': True
         }
         return JsonResponse(data)
+
+def export(request):
+    response = HttpResponse(content_type='text/csv')
+
+    writer = csv.writer(response)
+    writer.writerow(['Profession', 'Average age'])
+
+    data = utilities.score
+    writer.writerow(data)
+
+    response['Content-Disposition'] = 'attachment; filename="average.csv"'
+
+    return response
+
+
 

@@ -11,3 +11,17 @@ a {
 a.navbar-item:hover {
     color: black;
 }
+.step-links a{
+    color: rgb(87, 86, 86);
+}
+input[type=file]::file-selector-button {
+    background-color: white;
+    color: black;
+    padding: .5em;
+    border-radius: .2em;
+    margin-top: .3em;
+    cursor: pointer;
+  }
+.csv {
+    color: black;
+}

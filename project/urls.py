@@ -1,15 +1,11 @@
 from django.urls import path
-from django.views.generic.base import TemplateView
 from . import views
 urlpatterns = [
- 
-
     path('', views.WorkersList.as_view(), name='worker-list'),
-    path('profs/', views.ProfsView.as_view(), name='profs-list'),
+    path('csv/', views.export, name='csv_view'),
+    path('average/', views.AverageView.as_view(), name='average'),
     path('create/', views.WorkerCreateView.as_view(), name='worker-create'),
     path('<pk>/', views.WorkerDetail.as_view(), name='worker-detail'),
     path('<pk>/update/', views.WorkerUpdate.as_view(), name='worker-update'),
     path('ajax/delete/',  views.DeleteWorker.as_view(), name='worker_delete'),
-
-
 ]
