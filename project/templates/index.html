@@ -11,11 +11,26 @@
         {% for worker in page_obj %}
         <div class="card mb-4" id="workerTable">
             <div class="card-content" id="worker-{{worker.id}}">
+            <div class="media-left">
+                {% if worker.image %}
+                <div class="card-image">
+                    <figure class="image is-32x32 mb-4">
+                        <img src="{{ worker.image.url }}" alt=""/>
+                    </figure>
+                </div>
+                {% else %}
+                <div class="card-image">
+                    <figure class="image is-32x32 mb-4">
+                        <img src="{% static 'images/default.jpg' %}" alt=""/>
+                    </figure>
+                </div>
+                {% endif %}
+            </div>
             <div class="content">
                 <h3 class="is-size-6 mt-2"><a href="{% url 'worker-detail' worker.id %}" id="worker-detail">{{ worker.name|title }} {{ worker.surname|title }}</a></h3>
             </div>
             <div class="content">
-                <h3 class="is-size-6 mt-2"><button class="button is-dark is-uupercase mr-4"><a href="{% url 'worker-update' worker.id %}" id="worker-update">Update</a></button><button onClick="deleteUser({{worker.id}})" class="button is-dark is-uupercase">Delete</button></h3>
+                <h3 class="is-size-6 mt-2"><button class="button is-info is-uupercase mr-4"><a href="{% url 'worker-update' worker.id %}" id="worker-update">Update</a></button><button onClick="deleteUser({{worker.id}})" class="button is-danger is-uupercase">Delete</button></h3>
             </div>
             </div>
         </div>
@@ -39,11 +54,9 @@
         </div>
         {% if messages %}
         {% for message in messages %}
-            <div class="row">
-                <div class="col-4 col-12-medium-{{ message.tags }}">
-                    <h2>{{ message|safe }}</h2>
-                </div>
-            </div>
+        <div class="notification is-success is-toast">
+            {{ message }}
+        </div>
         {% endfor %}
         {% endif %}
     </div>

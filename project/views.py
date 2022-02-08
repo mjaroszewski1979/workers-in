@@ -1,23 +1,21 @@
-from django.shortcuts import render, get_object_or_404
-from . models import Worker
-from . import utilities 
+import csv
+
+from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView, DeleteView
-from django.views import View
-import importlib
+from django.views.generic.edit import UpdateView
 from django.views.generic import View
-from django.http import JsonResponse
-
-import csv
-
 from django.http import HttpResponse
+from django.contrib.messages.views import SuccessMessageMixin
+
+
+
+from . models import Worker
 
 
 # import generic UpdateView
-from django.views.generic.edit import UpdateView
-from django.contrib.messages.views import SuccessMessageMixin
+
 
 class WorkersList(ListView):
     paginate_by = 5
@@ -44,34 +42,25 @@ class WorkerDetail(DetailView):
 
 
 class AverageView(View):
-    
     def get(self, request):
         context = {}
-        importlib.reload(utilities)
-        context['average'] = utilities.score
+        context['average'] = Worker.objects.get_average_age()
         return render(request, 'average.html', context)
 
-class DeleteWorker(View):
-    def  get(self, request):
-        id1 = request.GET.get('id', None)
-        Worker.objects.get(id=id1).delete()
-        data = {
-            'deleted': True
-        }
-        return JsonResponse(data)
+class CsvView(View):
+    def get(self, request):
+        response = HttpResponse(content_type='text/csv')
+        writer = csv.writer(response)
+        writer.writerow(['Profession', 'Average age'])
+        data = Worker.objects.get_average_age()
+        for obj in data:
+            writer.writerow(obj)
+        response['Content-Disposition'] = 'attachment; filename="average.csv"'
+        return response
 
-def export(request):
-    response = HttpResponse(content_type='text/csv')
 
-    writer = csv.writer(response)
-    writer.writerow(['Profession', 'Average age'])
 
-    data = utilities.score
-    writer.writerow(data)
 
-    response['Content-Disposition'] = 'attachment; filename="average.csv"'
-
-    return response
 
 
 

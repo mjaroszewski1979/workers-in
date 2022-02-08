@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Home | {% endblock %}
+{% block title %} Detail | {% endblock %}
 
 {% block content %}
     <div class="card">
         <div class="card-content">
-            {% if object.image %}
-        <figure class="image is-32x32 mb-4">
-            <img src="{{ object.image.url }}" alt=""/>
-        </figure>
+        {% if object.image %}
+        <div class="card-image">
+            <figure class="image is-32x32 mb-4">
+                <img src="{{ object.image.url }}" alt=""/>
+            </figure>
+        </div>
         {% else %}
         <div class="card-image">
             <figure class="image is-32x32 mb-4">
