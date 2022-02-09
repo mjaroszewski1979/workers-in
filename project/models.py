@@ -12,7 +12,10 @@ class WorkerManager(models.Manager):
             nums = list(self.filter(profession=prof).values_list('age', flat=True))
             self.results[prof] = int(sum(nums) / len(nums))
             self.average = self.results.items()
-        return self.average
+        try:
+            return self.average
+        except AttributeError:
+            return None
 
 class Worker(models.Model):
     name = models.CharField(max_length=255)

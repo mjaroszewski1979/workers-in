@@ -126,6 +126,17 @@ class ProjectTest(TestCase):
     def test_image_upload(self):
         self.assertFalse(self.new_worker.image is None)
 
+    def test_csv_view_url_is_resolved(self):
+        url = reverse('csv_view')
+        self.assertEquals(resolve(url).func.view_class, views.CsvView)
+
+    def test_csv_view_get(self):
+        response = self.client.get(reverse('csv_view'))
+        self.assertEquals(response.status_code, 200)
+        self.assertTrue(b'Profession,Average age\r\nmechanik,34\r\n' in response.content)
+        self.assertEquals(response['Content-Disposition'], 'attachment; filename="average.csv"')
+
+
 
 
 

@@ -7,7 +7,6 @@ from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
 from rest_framework.test import APITestCase
-from . import views
 
 # App imports
 from project.models import Worker
@@ -36,7 +35,8 @@ class RestApiTest(APITestCase):
         self.pk = self.new_worker.id
 
     def test_delete(self):
-        response = self.client.get('/api/ajax/delete/?id='+str(self.new_worker.id))
+        response = self.client.get('/api/ajax/delete/', {'id' : self.new_worker.id})
         self.assertEquals(response.status_code, status.HTTP_200_OK)
         self.assertTrue(b'{"deleted": true}' in response.content)
+        self.assertEquals(Worker.objects.count(), 0)
 

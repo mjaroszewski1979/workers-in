@@ -4,6 +4,7 @@
 {% block title %} Average | {% endblock %}
 
 {% block content %}
+{% if average != None %}
 <table class="table is-fullwidth">
     <thead>
         <tr>
@@ -25,5 +26,10 @@
 <div class="content">
     <button class="button is-dark is uppercase mt-4" ><a href="{% url 'csv_view' %}" id="worker-update">CSV</a></button>
 </div>
+{% else %}
+<div class="column is-12 has-text-centered mt-6 mb-6">
+    <h2 class="is-size-3">There are no records in the database</h2>
+</div>
+{% endif %}
 
 {% endblock %}

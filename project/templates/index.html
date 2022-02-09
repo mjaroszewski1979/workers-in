@@ -4,6 +4,7 @@
 {% block title %} Home | {% endblock %}
 
 {% block content %}
+    {% if page_obj|length != 0 %}
     <div class="container">
         <div class="column is-12 has-text-centered mt-6 mb-6">
             <h2 class="is-size-3">List of Workers</h2>
@@ -60,6 +61,11 @@
         {% endfor %}
         {% endif %}
     </div>
+    {% else %}
+    <div class="column is-12 has-text-centered mt-6 mb-6">
+        <h2 class="is-size-3">There are no workers in the database.</h2>
+    </div>
+    {% endif %}
 {% endblock %}
 
 {% block scripts %}
