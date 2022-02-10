@@ -19,7 +19,7 @@ def generate_photo_file():
         file.seek(0)
         return 
 
-# Testing project app
+# Testing rest_api app
 class RestApiTest(APITestCase):
 
     def setUp(self):

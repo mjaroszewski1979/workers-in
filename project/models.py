@@ -1,10 +1,8 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-from PIL import Image
 
 class WorkerManager(models.Manager):
     
-
     def get_average_age(self):
         self.results = {}
         professions = list(self.values_list('profession', flat=True).distinct())
@@ -24,7 +22,6 @@ class Worker(models.Model):
     age = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(200)])
     image = models.ImageField(upload_to ='uploads/', null=True, blank=True)
     objects = WorkerManager()
-
 
     class Meta:
         ordering = ['surname']

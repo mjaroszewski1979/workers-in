@@ -22,7 +22,7 @@
     <body>
         <nav class="navbar is-dark">
             <div class="navbar-brand">
-                <a href="{% url 'worker-list' %}" class="navbar-item logo"><strong>Workers</strong></a>
+                <a href="{% url 'worker-list' %}" class="navbar-item logo" id="logo-link"><strong>Workers</strong></a>
         
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
                     <span aria-hidden="true"></span>
@@ -39,9 +39,9 @@
      
 
                 <div class="navbar-end">
-                    <a href="{% url 'worker-list' %}" class="navbar-item">Home</a>
-                    <a href="{% url 'average' %}" class="navbar-item">Average</a>
-                    <a href="{% url 'worker-create' %}" class="navbar-item">Create</a>
+                    <a href="{% url 'worker-list' %}" class="navbar-item" id="home-link">Home</a>
+                    <a href="{% url 'average' %}" class="navbar-item" id="average-link">Average</a>
+                    <a href="{% url 'worker-create' %}" class="navbar-item" id="create-link">Create</a>
                 </div>
             </div>
         </nav>

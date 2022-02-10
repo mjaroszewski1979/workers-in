@@ -7,12 +7,12 @@
 <div class="container">
     <form method="post" enctype="multipart/form-data" >{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="button is-dark is uppercase mt-4">Save</button>
+        <button type="submit" class="button is-dark is uppercase mt-4" id="create-button">Save</button>
     </form>
     <section>
         {% if messages %}
         {% for message in messages %}
-        <div class="notification is-success is-toast">
+        <div class="notification is-success is-toast" id="message-text">
             {{ message }}
         </div>
         {% endfor %}
