@@ -30,4 +30,12 @@ coverage run -p manage.py test project && coverage run -p manage.py test rest_ap
 
 <img src="https://github.com/mjaroszewski1979/workers-in/blob/main/coverage_report.png">
 
+---------------------------------------------------
+
+![caption](https://github.com/mjaroszewski1979/workers-in/blob/main/workers.png)
+  
+  Live | Code | Docker | Technologies
+  ---- | ---- | ------ | ------------
+   | [<img src="https://github.com/mjaroszewski1979/mjaroszewski1979/blob/main/github_g.png">](https://github.com/mjaroszewski1979/workers-in) |  | <img src="https://github.com/mjaroszewski1979/mjaroszewski1979/blob/main/python_g.png"> &nbsp; <img src="https://github.com/mjaroszewski1979/mjaroszewski1979/blob/main/django_g.png"> &nbsp; <img src="https://github.com/mjaroszewski1979/mjaroszewski1979/blob/main/html_g.png"> <img src="https://github.com/mjaroszewski1979/mjaroszewski1979/blob/main/css_g.png"> &nbsp; <img src="https://github.com/mjaroszewski1979/mjaroszewski1979/blob/main/htmlup.png"> &nbsp; &nbsp; <img src="https://github.com/mjaroszewski1979/mjaroszewski1979/blob/main/js1.png"> 
+
 
