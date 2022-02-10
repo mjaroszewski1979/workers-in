@@ -8,6 +8,8 @@
 * Taking full advantage of Django's built-in features like cross-site request forgery protection to ensure safe data transfer in web forms to a database
 * Breaking logic into smaller parts by adding various new Django applications to an existing project 
 * Writing as much functionality as possible in models or utility files instead of views 
+* Using Model Manager - an interface through which database query operations are provided to Django models
+* Performing AJAX requests from Django templates using JQuery to allow for web pages to be updated asynchronously by exchanging data with a web server behind the scenes
 * Storing app’s secure credentials in environment variables
 * Utilizing setUp method to handle especially expensive setup operations for all of the tests within a module
 * Performing extensive selenium tests using 'page object pattern' instead of making raw WebDriver calls to have cleaner code:
