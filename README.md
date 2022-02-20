@@ -20,6 +20,18 @@
 
 --------------------------------------------------
 
+### Docker info:
+* Compose is a tool for defining and running multi-container Docker applications
+* With a single command, you create and start all the services from your configuration
+* In this example Compose command line tool allows you to create and start separate containers for each dependency with a single command (docker-compose up)
+* Included custom shell script creates a superuser and runs initial database migrations
+
+```
+docker-compose up
+
+```
+
+
 ### Code Coverage:
 * Selenium and unit tests combined
 
